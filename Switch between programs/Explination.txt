@@ -1,0 +1,1 @@
+The default setup will switch between Chrome and Edge, the apps have to be maximised otherwise they don't appear in front of anything they just become the main window while still being minimised

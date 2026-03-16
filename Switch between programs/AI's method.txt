@@ -1,0 +1,38 @@
+The below should work, making a hello world .vbs test worked just before on my PC and I don't think I've installed anything special, just make it very clear to Paul that I created the script that'll be used and it has to be used in a very specific way to work properly
+
+I imagine the alt tab thing will be alt+tab+tab will equal tabbing twice, hopefully that works out
+
+
+
+Using Batch Files for Alt-Tab Functionality
+Batch files alone cannot directly simulate keyboard shortcuts like Alt-Tab. However, you can achieve this functionality by combining batch files with VBScript.
+
+Creating a Hybrid Batch/VBScript
+Create a Batch File: Start by creating a batch file that will call a VBScript to perform the Alt-Tab action.
+VBScript Code: Use the following VBScript code to send the Alt-Tab command:
+vbscript
+
+
+Copy Code
+set WshShell = WScript.CreateObject("WScript.Shell")
+WshShell.SendKeys "%{TAB}"
+
+
+Batch File Code: Save the following code in your batch file to execute the VBScript:
+batch
+
+
+Copy Code
+@echo off
+echo set WshShell = WScript.CreateObject("WScript.Shell") > %temp%\alt_tab.vbs
+echo WshShell.SendKeys "%%{TAB}" >> %temp%\alt_tab.vbs
+cscript //nologo %temp%\alt_tab.vbs
+del %temp%\alt_tab.vbs
+
+
+Running the Batch File
+Save the batch file with a .bat extension.
+When you run this batch file, it will execute the VBScript, which simulates the Alt-Tab action, allowing you to switch between open windows.
+Limitations
+This method may not work perfectly in all scenarios, especially if the focus is not on the desktop or if certain applications are running in full-screen mode.
+For more complex automation, consider using tools like AutoIt or AutoHotkey, which provide more robust scripting capabilities for keyboard and mouse automation.
